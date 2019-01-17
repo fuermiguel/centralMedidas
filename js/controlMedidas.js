@@ -27,18 +27,22 @@
         rdAleatorio.addEventListener('change', function() {
             //inicializamos
             txtMedidas.value = '';
+            txtMedidas.readOnly = true;
+            txtMedidas.focus();
             //Llamamos a una función que nos de los 30 valores aleatorios)
             txtMedidas.value = medidasAleatorias();
         }, false);
 
         rdManual.addEventListener('change', function() {
+            //Inicializamos
             txtMedidas.value = '';
+            txtMedidas.readOnly = false;
         }, false);
 
         btnGuardar.addEventListener('click', function() {
             //validar
             //Nombre tiene contenido //El método test() busca una ocurrencia entre una expresión regular y una cadena
-            let respuesta = validarFormulario(txtCiudad, centralMedidas.obtenerMedidas()); //Para llmar a la función solo una vez
+            let respuesta = validarFormulario(txtCiudad, txtMedidas.value.split(',')); //Para llmar a la función solo una vez
             let mensaje = respuesta[0];
             let valido = respuesta[1];
 
