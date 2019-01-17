@@ -4,6 +4,10 @@ class CentralMedidas {
         this._medidas = []; //tiene la estructura [0]ciudad|[1]valores, siendo ciudad un string y valores un array
     }
 
+    obtenerMedidas() {
+        return this._medidas;
+    }
+
     insertarMedidas(ciudad, valores) {
 
         //comprobar si la ciudad ya existe
@@ -74,10 +78,3 @@ class CentralMedidas {
 
     }
 }
-
-let centralMedidas;
-let valores = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
-    //Lo que está quí dentro se ejecuta antes de cada prueba
-centralMedidas = new CentralMedidas();
-centralMedidas.insertarMedidas("avila", valores);
-centralMedidas.imprime();
