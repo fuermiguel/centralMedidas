@@ -75,6 +75,16 @@ class CentralMedidas {
 
     }
     toHtml() {
+        let cadena = '<table>';
+        for (const ciudad of this._medidas) {
+            cadena = cadena + '<tr><th>' + ciudad[0] + '</th>';
+            for (const valor of ciudad[1]) {
+                cadena = cadena + '<th>' + valor + '</th>';
+            }
+        }
+        cadena = cadena + '</table>';
+
+        return cadena;
 
     }
 }

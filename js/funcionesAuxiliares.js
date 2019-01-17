@@ -14,13 +14,13 @@ function medidasAleatorias() {
     return cadena.substring(0, cadena.length - 1)
 }
 
-function validarFormulario(txtCiudad, medidas) {
+function validarFormulario(txtCiudad, medidas, centralMedidas) {
 
     //La expresión regular es para identificar todo espacios en blanco
 
     if (txtCiudad.value.length == 0 || /^\s*$/.test(txtCiudad.value))
         return ["El campo del nombre está vacío", false];
-    if (ciudadRepetida(txtCiudad, medidas)) return ["El nombre de la ciudad ya existe", false];
+    if (ciudadRepetida(txtCiudad, centralMedidas)) return ["El nombre de la ciudad ya existe", false];
 
     if (!numeroValoresCorrecto(medidas)) return ["No hay 30 medidas", false];
 
@@ -30,9 +30,9 @@ function validarFormulario(txtCiudad, medidas) {
     return ["validación correcta", true];
 }
 
-function ciudadRepetida(ciudad, medidas) {
-    for (let valor of medidas) {
-        if (valor[0] == ciudad) return true;
+function ciudadRepetida(ciudad, centralMedidas) {
+    for (let valor of centralMedidas.obtenerMedidas()) {
+        if (valor[0] == ciudad.value) return true;
     }
     return false;
 }

@@ -14,6 +14,7 @@
         // let btnBorrar = d.getElementByIdç('borrar');
         let btnModificar = d.getElementById('modificar');
         let dvErrores = d.getElementById('errores');
+        let dvTablaMedidas = d.getElementById('tabla-medidas');
         /************manejo de number???????????????********** */
 
 
@@ -40,14 +41,20 @@
         }, false);
 
         btnGuardar.addEventListener('click', function() {
-            //validar
-            //Nombre tiene contenido //El método test() busca una ocurrencia entre una expresión regular y una cadena
-            let respuesta = validarFormulario(txtCiudad, txtMedidas.value.split(',')); //Para llmar a la función solo una vez
+
+            let medidas = txtMedidas.value.split(',');
+            let respuesta = validarFormulario(txtCiudad, medidas, centralMedidas);
             let mensaje = respuesta[0];
             let valido = respuesta[1];
 
             if (valido) {
+                //Borro errores
                 dvErrores.innerHTML = "Errores: "
+                    //Guado datos
+                centralMedidas.insertarMedidas(txtCiudad.value, medidas);
+
+                //Muestro en una tabla
+                dvTablaMedidas.innerHTML = centralMedidas.toHtml();
             } else {
                 dvErrores.innerHTML = "Errores: " + mensaje;
             }
